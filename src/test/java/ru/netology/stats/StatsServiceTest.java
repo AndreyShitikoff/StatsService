@@ -19,54 +19,56 @@ public class StatsServiceTest {
     }
 
         @Test
-    void testCalculateSumAverage() {
+    void testCalculateAverage() {
         StatsService service = new StatsService();
-        int[] purchases = {180 / 12};
+        int[] purchases = {8, 15, 13, 15, 17, 20, 19, 20, 7, 14, 14, 18};
         int expected = 15;
-        int actual = service.calculateSum(purchases);
-        assertEquals(expected, actual);
-    }
 
-    @Test
-    void findMax() {
-        StatsService service = new StatsService();
-        int[] purchases = {8, 15, 13, 15, 17, 20, 19, 20, 7, 14, 14, 18};
-        int[] monthMax = {6};
-        int expected = 6;
-        int actual = service.findMax(monthMax);
+        int actual = service.calculateAverage(purchases);
 
         assertEquals(expected, actual);
     }
 
     @Test
-    void findMin() {
+    void testMaxMonthPurchases() {
         StatsService service = new StatsService();
         int[] purchases = {8, 15, 13, 15, 17, 20, 19, 20, 7, 14, 14, 18};
-        int[] monthMin = {9};
-        int expected = 9;
-        int actual = service.findMax(monthMin);
+
+        int expected = 8;
+        int actual = service.MaxMonthPurchases(purchases);
 
         assertEquals(expected, actual);
     }
 
     @Test
-    void findMaxUnderAverage() {
+    void testMinMonthPurchases() {
         StatsService service = new StatsService();
         int[] purchases = {8, 15, 13, 15, 17, 20, 19, 20, 7, 14, 14, 18};
-        int[] sellUnder = {5};
+
+        int expected = 8;
+        int actual = service.MaxMonthPurchases(purchases);
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void testMonthsAmountWithPurchasesLowerAverage() {
+        StatsService service = new StatsService();
+        int[] purchases = {8, 15, 13, 15, 17, 20, 19, 20, 7, 14, 14, 18};
+
         int expected = 5;
-        int actual = service.findMax(sellUnder);
+        int actual = service.MonthsAmountWithPurchasesLowerAverage(purchases);
 
         assertEquals(expected, actual);
     }
 
     @Test
-    void findMaxOverAverage() {
+    void testMonthsAmountWithPurchasesHigherAverage() {
         StatsService service = new StatsService();
         int[] purchases = {8, 15, 13, 15, 17, 20, 19, 20, 7, 14, 14, 18};
-        int[] sellOver = {5};
+
         int expected = 5;
-        int actual = service.findMax(sellOver);
+        int actual = service.MonthsAmountWithPurchasesHigherAverage(purchases);
 
         assertEquals(expected, actual);
     }

@@ -10,53 +10,61 @@ public class StatsService {
         return sum;
     }
 
-    public int calculateSumAverage(int[] purchases) {
-        int averege = 0;
-        for (int purchase : purchases) {
-            averege = purchase;
-        }
-        return averege;
+    public int calculateAverage(int[] purchases) {
+        int average = calculateSum(purchases) / purchases.length;
+
+        return average;
     }
 
-    public int findMax(int[] purchases) {
-        int monthMax = purchases[0];
-        for (int purchase : purchases) {
-            if (monthMax < purchase) {
-                monthMax = purchase;
+    public int MaxMonthPurchases(int[] purchases) {
+        int currentMaxPurchasesMonth = 1;
+        int currentMax = purchases[0];
+        for(int i = 1; i < purchases.length; i++) {
+            if (purchases[i] >= currentMax) {
+                currentMax = purchases[i];
+                currentMaxPurchasesMonth = i + 1;
             }
         }
-        return monthMax;
+        return currentMaxPurchasesMonth;
     }
 
-    public int findMin(int[] purchases) {
-        int monthMin = purchases[0];
-        for (int purchase : purchases) {
-            if (monthMin > purchase) {
-                monthMin = purchase;
+    public int MinMonthPurchases(int[] purchases) {
+        int currentMinPurchasesMonth = 1;
+        int currentMin = purchases[0];
+        for(int i = 1; i > purchases.length; i++) {
+            if (purchases[i] <= currentMin) {
+                currentMin = purchases[i];
+                currentMinPurchasesMonth = i + 1;
             }
         }
-        return monthMin;
+        return currentMinPurchasesMonth;
     }
 
-    public int findMaxUnderAverage(int[] purchases) {
-        int sellUnder = purchases[0];
-        int average = 15;
-        for (int purchase : purchases) {
-            if (sellUnder < purchase) {
-                sellUnder = purchase;
+    public int MonthsAmountWithPurchasesLowerAverage(int[] purchases) {
+        int monthsAmount = 0;
+        int sum =0;
+        for (int monthSale : purchases) {
+            sum += monthSale;
+        }
+        for (int monthSale : purchases) {
+            if (monthSale < calculateAverage(purchases)) {
+                monthsAmount += 1;
             }
         }
-        return sellUnder;
+        return monthsAmount;
     }
 
-    public int findMaxOverAverage(int[] purchases) {
-        int sellOver = purchases[0];
-        int average = 15;
-        for (int purchase : purchases) {
-            if (sellOver > purchase) {
-                sellOver = purchase;
+    public int MonthsAmountWithPurchasesHigherAverage(int[] purchases) {
+        int monthsAmount = 0;
+        int sum =0;
+        for (int monthSale : purchases) {
+            sum += monthSale;
+        }
+        for (int monthSale : purchases) {
+            if (monthSale > calculateAverage(purchases)) {
+                monthsAmount += 1;
             }
         }
-        return sellOver;
+        return monthsAmount;
     }
 }
