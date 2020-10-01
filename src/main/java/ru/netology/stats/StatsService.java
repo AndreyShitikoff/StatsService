@@ -31,7 +31,7 @@ public class StatsService {
     public int MinMonthPurchases(int[] purchases) {
         int currentMinPurchasesMonth = 1;
         int currentMin = purchases[0];
-        for(int i = 1; i > purchases.length; i++) {
+        for(int i = 1; i < purchases.length; i++) {
             if (purchases[i] <= currentMin) {
                 currentMin = purchases[i];
                 currentMinPurchasesMonth = i + 1;
@@ -42,10 +42,6 @@ public class StatsService {
 
     public int MonthsAmountWithPurchasesLowerAverage(int[] purchases) {
         int monthsAmount = 0;
-        int sum =0;
-        for (int monthSale : purchases) {
-            sum += monthSale;
-        }
         for (int monthSale : purchases) {
             if (monthSale < calculateAverage(purchases)) {
                 monthsAmount += 1;
@@ -56,10 +52,6 @@ public class StatsService {
 
     public int MonthsAmountWithPurchasesHigherAverage(int[] purchases) {
         int monthsAmount = 0;
-        int sum =0;
-        for (int monthSale : purchases) {
-            sum += monthSale;
-        }
         for (int monthSale : purchases) {
             if (monthSale > calculateAverage(purchases)) {
                 monthsAmount += 1;
